@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BotBrawl — Enter the Arena</title>
+    <meta
+      name="description"
+      content="BotBrawl: pit Claude Code, Codex, Antigravity and Kimi against each other in live rap battles, roasts, debates, poetry slams and story duels."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/mark.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to arena</a>
+    <div class="ambient-stage" aria-hidden="true"></div>
+
+    <header class="app-header">
+      <a class="brand" href="/" aria-label="BotBrawl home"
+        ><img src="assets/mark.svg" width="38" height="38" alt="" /><span
+          >BOT<span class="brand-outline">BRAWL</span
+          ><small>THE AI BATTLE ARENA</small></span
+        ></a
+      >
+      <nav class="nav-tabs" aria-label="Main navigation">
+        <button
+          id="tab-arena"
+          class="tab active"
+          type="button"
+          aria-current="page"
+        >
+          <span aria-hidden="true">◈</span> PLAY</button
+        ><button id="tab-history" class="tab" type="button">
+          <span aria-hidden="true">▤</span> BATTLE ARCHIVE
+        </button>
+      </nav>
+      <div class="header-controls">
+        <span id="connection-status" class="connection-status"
+          ><i></i> CONNECTING</span
+        ><button
+          id="voice-toggle"
+          class="cinema-btn active"
+          type="button"
+          aria-pressed="true"
+          title="Toggle free neural voice (V)"
+        >
+          <span aria-hidden="true">♪</span
+          ><span class="cinema-label" id="voice-label">VOICE ON</span><kbd>V</kbd>
+        </button><button
+          id="cinema-toggle"
+          class="cinema-btn"
+          type="button"
+          aria-pressed="false"
+          title="Toggle broadcast view (F)"
+        >
+          <span aria-hidden="true">⛶</span
+          ><span class="cinema-label">BROADCAST</span><kbd>F</kbd>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="app-main">
+      <!-- Setup View -->
+      <section id="view-setup" class="card setup-card">
+        <div class="lobby-heading">
+          <div>
+            <p class="eyebrow"><span></span> THE STAGE IS YOURS</p>
+            <h1>
+              BIG BRAINS.<br class="mobile-break" />
+              <em>BIGGER BATTLES.</em>
+            </h1>
+            <p class="intro">
+              Your favorite AIs. All the attitude. One winner.
+            </p>
+          </div>
+          <div class="lobby-stamp" aria-hidden="true">
+            <span>HUMAN CREATIVITY</span
+            ><strong>MEETS<br />ARTIFICIAL ATTITUDE.</strong
+            ><span>EST. 2026 / 1 V 1</span>
+          </div>
+        </div>
+        <div class="section-line">
+          <h2><span>01</span> PICK YOUR BATTLE</h2>
+          <span class="section-aside">FIVE WAYS TO SETTLE IT.</span>
+        </div>
+        <div
+          id="modes"
+          class="modes"
+          role="radiogroup"
+          aria-label="Battle Format"
+        >
+          <p class="loading-copy">Loading battle formats…</p>
+        </div>
+        <div class="section-line matchup-label">
+          <h2><span>02</span> CHOOSE YOUR FIGHTERS</h2>
+          <span class="section-aside"
+            >DIFFERENT MODELS. SAME BAD INTENTIONS.</span
+          >
+        </div>
+        <div class="matchup-deck">
+          <article
+            class="corner-panel corner-a"
+            aria-label="Player 1 configuration"
+          >
+            <div class="character-scene">
+              <div class="scene-grid"></div>
+              <span class="scene-word" aria-hidden="true"
+                >VERBAL<br />VELOCITY</span
+              ><img
+                class="character-art"
+                src="assets/robot-violet.png"
+                alt="Violet robot MC holding a microphone"
+              />
+              <div class="corner-head">
+                <span class="player-tag">P1</span
+                ><span class="corner-badge">THE CHALLENGER</span
+                ><span class="fighter-ready">○ CHOOSE</span>
+              </div>
+              <div class="character-caption">
+                <span>FIRST TO THE MIC</span>
+                <h3 id="fighter-name-a">CLAUDE CODE</h3>
+                <span class="character-class">SHARP MIND. SHARPER LINES.</span>
+              </div>
+            </div>
+            <div class="fighter-select-group">
+              <label for="sel-a"
+                ><span class="label-text">AI PLATFORM</span
+                ><select
+                  id="sel-a"
+                  aria-label="Player 1 platform"
+                ></select></label
+              ><label for="model-a"
+                ><span class="label-text">MODEL</span
+                ><select id="model-a" aria-label="Player 1 model"></select
+              ></label>
+            </div>
+          </article>
+          <div class="vs-divider" aria-hidden="true">
+            <span class="vs-orbit"></span
+            ><span class="vs-badge">VS<small>MAKE IT PERSONAL.</small></span>
+          </div>
+          <article
+            class="corner-panel corner-b"
+            aria-label="Player 2 configuration"
+          >
+            <div class="character-scene">
+              <div class="scene-grid"></div>
+              <span class="scene-word" aria-hidden="true"
+                >SYSTEM<br />OVERRIDE</span
+              ><img
+                class="character-art"
+                src="assets/robot-lime.png"
+                alt="Lime robot MC holding a microphone"
+              />
+              <div class="corner-head">
+                <span class="player-tag">P2</span
+                ><span class="corner-badge">THE CONTENDER</span
+                ><span class="fighter-ready">○ CHOOSE</span>
+              </div>
+              <div class="character-caption">
+                <span>READY TO CLAP BACK</span>
+                <h3 id="fighter-name-b">CODEX</h3>
+                <span class="character-class"
+                  >BUILT DIFFERENT. TALKS DIFFERENT.</span
+                >
+              </div>
+            </div>
+            <div class="fighter-select-group">
+              <label for="sel-b"
+                ><span class="label-text">AI PLATFORM</span
+                ><select
+                  id="sel-b"
+                  aria-label="Player 2 platform"
+                ></select></label
+              ><label for="model-b"
+                ><span class="label-text">MODEL</span
+                ><select id="model-b" aria-label="Player 2 model"></select
+              ></label>
+            </div>
+          </article>
+        </div>
+        <section class="match-settings" aria-labelledby="settings-title">
+          <div class="settings-title">
+            <h2 id="settings-title"><span>03</span> SET THE RULES</h2>
+            <p>Give them something<br />to fight about.</p>
+          </div>
+          <div class="settings-fields">
+            <div class="form-group topic-group">
+              <label for="topic">
+                <span class="label-text">THE BATTLEFIELD / TOPIC</span>
+                <input
+                  id="topic"
+                  value=""
+                  maxlength="200"
+                  autocomplete="off"
+                  spellcheck="false"
+                  placeholder="Pick a topic below, or write your own rivalry…"
+                />
+              </label>
+              <label for="language">
+                <span class="label-text">LANGUAGE</span>
+                <select id="language">
+                  <option value="English">English</option>
+                  <option value="Hindi">Hindi (हिन्दी)</option>
+                  <option value="Hinglish">Hinglish (Hindi + English)</option>
+                  <option value="Urdu">Urdu (اردو)</option>
+                  <option value="Roman Urdu">Roman Urdu</option>
+                  <option value="Punjabi">Punjabi (ਪੰਜਾਬੀ / Roman)</option>
+                  <option value="Spanish">Spanish (Español)</option>
+                  <option value="French">French (Français)</option>
+                  <option value="German">German (Deutsch)</option>
+                  <option value="Portuguese">Portuguese (Português)</option>
+                  <option value="Arabic">Arabic (العربية)</option>
+                  <option value="Russian">Russian (Русский)</option>
+                  <option value="Turkish">Turkish (Türkçe)</option>
+                  <option value="Japanese">Japanese (日本語)</option>
+                  <option value="Korean">Korean (한국어)</option>
+                  <option value="Chinese">Chinese (中文)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="topic-discovery">
+              <div class="topic-discovery-head">
+                <span class="label-text">PICK A FIGHT</span
+                ><button id="shuffle-topic" class="shuffle-topic" type="button">
+                  ↻ SURPRISE ME
+                </button>
+              </div>
+              <div
+                id="topic-drops"
+                class="topic-drops"
+                aria-label="Suggested topics"
+              ></div>
+              <p id="topic-roles" class="topic-roles" aria-live="polite"></p>
+            </div>
+
+            <div class="grid3">
+              <label for="rounds">
+                <span class="label-text">Rounds</span>
+                <input id="rounds" type="number" min="1" max="5" value="3" />
+              </label>
+              <label for="lines">
+                <span class="label-text" id="length-label">Lines / verse</span>
+                <input id="lines" type="number" min="2" max="16" value="8" />
+              </label>
+              <label for="sel-judge">
+                <span class="label-text">AI JUDGE</span>
+                <select id="sel-judge"></select>
+              </label>
+              <label for="model-judge">
+                <span class="label-text">Judge Model</span>
+                <select id="model-judge"></select>
+              </label>
+            </div>
+          </div>
+        </section>
+        <div class="setup-action-bar">
+          <div>
+            <label class="check" for="clean"
+              ><input id="clean" type="checkbox" checked /><span
+                class="check-text"
+                >KEEP IT CLEAN</span
+              ><span class="check-help">Family-friendly punchlines</span></label
+            >
+            <p class="match-summary" id="match-summary">
+              3 rounds · 8 lines · English
+            </p>
+          </div>
+          <button id="start" class="primary launch-btn" type="button" disabled>
+            <span>ENTER THE ARENA</span><span aria-hidden="true">↗</span>
+          </button>
+        </div>
+        <p id="setup-error" class="error-banner" hidden role="alert"></p>
+      </section>
+
+      <!-- Battle View -->
+      <section id="view-battle" class="battle-section" hidden>
+        <!-- Broadcast Scoreboard & Topic Bar -->
+        <div class="broadcast-bar">
+          <div class="broadcast-meta">
+            <span id="live-indicator" class="live-pill">
+              <span class="live-dot"></span>
+              <span id="live-status-text">ON AIR</span>
+            </span>
+            <span id="b-mode-pill" class="meta-pill">RAP BATTLE</span>
+            <span id="b-lang-pill" class="meta-pill" hidden></span>
+            <span id="round-label" class="round-label" aria-live="polite"
+              >ROUND 01</span
+            >
+          </div>
+
+          <div class="broadcast-topic-row">
+            <h1 id="b-topic" class="topic-title" dir="auto"></h1>
+            <div class="broadcast-actions">
+              <button id="stop" class="ghost-danger" type="button">
+                STOP BATTLE ■
+              </button>
+            </div>
+          </div>
+
+          <!-- Momentum Tug-of-War Bar -->
+          <div class="momentum-track" aria-hidden="true">
+            <div id="momentum-a" class="momentum-fill-a"></div>
+            <div id="momentum-b" class="momentum-fill-b"></div>
+          </div>
+        </div>
+
+        <!-- 1v1 Split Stage -->
+        <div class="stage">
+          <article id="side-a" class="fighter">
+            <header class="fighter-header">
+              <img class="hud-portrait" src="assets/robot-violet.png" alt="" />
+              <div class="fighter-identity">
+                <span class="corner-index">PLAYER 01</span>
+                <div class="fighter-meta">
+                  <span class="dot" aria-hidden="true"></span>
+                  <h2 class="fname"></h2>
+                </div>
+                <span class="performer-status">ON STANDBY</span>
+              </div>
+              <div class="fighter-right">
+                <div class="eq-bars" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="score-block">
+                  <span class="score-caption">PTS</span>
+                  <span class="score" title="Judge Score">0</span>
+                </div>
+              </div>
+            </header>
+            <div class="verse-scroller">
+              <div class="verse"></div>
+            </div>
+          </article>
+
+          <article id="side-b" class="fighter">
+            <header class="fighter-header">
+              <img class="hud-portrait" src="assets/robot-lime.png" alt="" />
+              <div class="fighter-identity">
+                <span class="corner-index">PLAYER 02</span>
+                <div class="fighter-meta">
+                  <span class="dot" aria-hidden="true"></span>
+                  <h2 class="fname"></h2>
+                </div>
+                <span class="performer-status">ON STANDBY</span>
+              </div>
+              <div class="fighter-right">
+                <div class="eq-bars" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="score-block">
+                  <span class="score-caption">PTS</span>
+                  <span class="score" title="Judge Score">0</span>
+                </div>
+              </div>
+            </header>
+            <div class="verse-scroller">
+              <div class="verse"></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Center-Safe Live Karaoke Caption Bar for 9:16 Shorts & Broadcast -->
+        <div id="shorts-caption-bar" class="shorts-caption-bar" hidden aria-hidden="true">
+          <span id="shorts-caption-speaker" class="shorts-caption-speaker"></span>
+          <div id="shorts-caption-text" class="shorts-caption-text" dir="auto"></div>
+        </div>
+
+        <!-- Structured Adjudicator Card -->
+        <div id="judge-box" class="judge-card" hidden role="status"></div>
+
+        <!-- Final Verdict & Audience Voting -->
+        <div id="vote-box" class="card vote-card" hidden>
+          <div class="verdict-banner">
+            <span class="verdict-eyebrow">THE FINAL VERDICT</span>
+            <h2 id="winner" class="verdict-winner"></h2>
+          </div>
+          <p class="director-cta" aria-hidden="true">
+            WHO WON THIS CLASH? DROP <strong>"A"</strong> OR <strong>"B"</strong> IN THE COMMENTS!
+          </p>
+          <p class="vote-prompt">
+            THE CROWD HAS A SAY. Add +1 point to your favorite.
+          </p>
+          <div class="vote-row">
+            <button id="vote-a" class="vote" type="button"></button>
+            <button id="vote-b" class="vote" type="button"></button>
+          </div>
+          <p id="vote-tally" class="tally" aria-live="polite"></p>
+          <div class="vote-actions">
+            <button id="again" class="primary" type="button">
+              RUN IT BACK ↗
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- History View -->
+      <section id="view-history" class="card history-card" hidden>
+        <div class="lobby-heading">
+          <div>
+            <p class="eyebrow"><span></span> EVERY BATTLE LEAVES A MARK</p>
+            <h1>THE <em>ARCHIVE.</em></h1>
+            <p class="intro">
+              Great lines deserve an encore. Replay your past showdowns.
+            </p>
+          </div>
+          <span id="archive-count" class="archive-count"></span>
+        </div>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+
+      <!-- High-CTR VS Poster Thumbnail Stage (Used by Headless Video Studio) -->
+      <section id="poster-stage" class="poster-stage" hidden aria-hidden="true">
+        <div class="poster-top">
+          <span class="poster-brand">BOTBRAWL ARENA</span>
+          <span id="poster-mode" class="poster-mode-pill">AI RAP BATTLE</span>
+          <span id="poster-lang" class="poster-lang-pill" hidden></span>
+        </div>
+        <div class="poster-duel">
+          <div class="poster-fighter poster-fighter-a">
+            <img class="poster-art" src="assets/robot-violet.png" alt="" />
+            <div class="poster-fighter-info">
+              <span class="poster-corner-tag">CORNER A</span>
+              <h2 id="poster-name-a" class="poster-fname">GEMINI</h2>
+              <p id="poster-role-a" class="poster-role" dir="auto"></p>
+            </div>
+          </div>
+          <div class="poster-vs-wrap">
+            <span class="poster-vs-diamond"></span>
+            <span class="poster-vs-text">VS</span>
+          </div>
+          <div class="poster-fighter poster-fighter-b">
+            <img class="poster-art" src="assets/robot-lime.png" alt="" />
+            <div class="poster-fighter-info">
+              <span class="poster-corner-tag">CORNER B</span>
+              <h2 id="poster-name-b" class="poster-fname">CLAUDE</h2>
+              <p id="poster-role-b" class="poster-role" dir="auto"></p>
+            </div>
+          </div>
+        </div>
+        <div class="poster-topic-banner">
+          <span class="poster-topic-kicker">TODAY'S SHOWDOWN</span>
+          <h1 id="poster-topic" class="poster-topic-title" dir="auto"></h1>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span><b>✳</b> POWERED BY BRAINS. FUELED BY RIVALRY.</span
+      ><span>LOCAL ARENA <i></i> BOTBRAWL / 01</span>
+    </footer>
+    <script src="vendor/anime.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

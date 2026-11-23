@@ -1,0 +1,11 @@
+node_modules/
+.venv*/
+data/
+qa/
+__pycache__/
+*.pyc
+.env
+.env.*
+client_secret*.json
+*.log
+.DS_Store

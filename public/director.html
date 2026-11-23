@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BotBrawl — Broadcast Motion Stage</title>
+    <link rel="stylesheet" href="studio-fonts.css" />
+    <link rel="stylesheet" href="motion-tokens.css" />
+    <link rel="stylesheet" href="director.css" />
+  </head>
+  <body class="aspect-9-16">
+    <div id="viewport" class="viewport">
+      <!-- LAYER 1: Full-Bleed Ambient Arena (0.2x Parallax — Fills 100% of Frame) -->
+      <div id="ambient-layer" class="ambient-layer" aria-hidden="true">
+        <div id="spotlight-a" class="spotlight spotlight-a"></div>
+        <div id="spotlight-b" class="spotlight spotlight-b"></div>
+        <div id="arena-beams" class="arena-beams"></div>
+        <div id="arena-grid" class="arena-grid"></div>
+        <div id="watermark-bg" class="watermark-bg">BOTBRAWL</div>
+        <div class="arena-vignette"></div>
+      </div>
+
+      <!-- CAMERA RIG (Applies deterministic zoom, pan, whip & 5-frame punchline shake) -->
+      <div id="camera-rig" class="camera-rig">
+        <!-- SCENE: Cold-Open Hook & Loop Target (0.0s – 1.4s) -->
+        <section id="scene-hook" class="scene scene-hook" hidden>
+          <div class="hook-silhouettes">
+            <img class="hook-mc hook-mc-a" src="assets/robot-violet.png" alt="" />
+            <img class="hook-mc hook-mc-b" src="assets/robot-lime.png" alt="" />
+          </div>
+          <div class="hook-center safe-box">
+            <span id="hook-kicker" class="badge-kicker badge-gold">WAIT FOR THIS BAR…</span>
+            <p id="hook-topic" class="hook-topic-pill" dir="auto"></p>
+          </div>
+        </section>
+
+        <!-- SCENE: VS Slam (~1.4s – ~2.7s) -->
+        <section id="scene-vs" class="scene scene-vs" hidden>
+          <div id="vs-panel-a" class="vs-half vs-half-a">
+            <img class="vs-art" src="assets/robot-violet.png" alt="" />
+            <div class="vs-meta">
+              <span class="vs-corner-tag">CORNER A</span>
+              <h2 id="vs-name-a" class="vs-fighter-name">FIGHTER A</h2>
+              <p id="vs-role-a" class="vs-fighter-role" dir="auto"></p>
+            </div>
+          </div>
+          <div id="vs-emblem" class="vs-emblem">
+            <span class="vs-diamond"></span>
+            <span class="vs-letters">VS</span>
+          </div>
+          <div id="vs-panel-b" class="vs-half vs-half-b">
+            <img class="vs-art" src="assets/robot-lime.png" alt="" />
+            <div class="vs-meta">
+              <span class="vs-corner-tag">CORNER B</span>
+              <h2 id="vs-name-b" class="vs-fighter-name">FIGHTER B</h2>
+              <p id="vs-role-b" class="vs-fighter-role" dir="auto"></p>
+            </div>
+          </div>
+          <div id="vs-topic-card" class="vs-topic-card safe-check">
+            <span id="vs-mode-tag" class="vs-mode-tag">AI RAP BATTLE</span>
+            <h1 id="vs-topic-text" class="vs-topic-text" dir="auto"></h1>
+          </div>
+        </section>
+
+        <!-- SCENE: Round Drop Banner (~2.75s – ~3.25s) -->
+        <section id="scene-round" class="scene scene-round" hidden>
+          <div id="round-slam-box" class="round-slam-box safe-check">
+            <span id="round-slam-eyebrow" class="badge-kicker badge-lime">DROP THE BEAT</span>
+            <h2 id="round-slam-title" class="round-slam-title">ROUND 01</h2>
+          </div>
+        </section>
+
+        <!-- SCENE: Main Battle Performance Stage (9:16 Hero + Inset / 16:9 Dual Stage) -->
+        <section id="scene-battle" class="scene scene-battle" hidden>
+          <!-- LAYER 2: Secondary Arena Elements (0.5x Parallax) -->
+          <div id="secondary-layer" class="secondary-layer">
+            <div id="eq-halo" class="eq-halo"></div>
+            <div id="hero-shadow" class="hero-shadow"></div>
+          </div>
+
+          <!-- Vertical 9:16 Single-Hero + Opponent Mini-Cam / Landscape 16:9 Dual Stage -->
+          <div id="performers-stage" class="performers-stage">
+            <div id="performer-a" class="performer performer-a">
+              <div class="performer-aura"></div>
+              <img class="performer-art" src="assets/robot-violet.png" alt="" />
+              <div class="performer-plate safe-check">
+                <span class="performer-corner">CORNER A</span>
+                <strong id="plate-name-a" class="performer-name">FIGHTER A</strong>
+                <span id="plate-state-a" class="performer-state">ON THE MIC</span>
+              </div>
+            </div>
+
+            <div id="performer-b" class="performer performer-b">
+              <div class="performer-aura"></div>
+              <img class="performer-art" src="assets/robot-lime.png" alt="" />
+              <div class="performer-plate safe-check">
+                <span class="performer-corner">CORNER B</span>
+                <strong id="plate-name-b" class="performer-name">FIGHTER B</strong>
+                <span id="plate-state-b" class="performer-state">LISTENING</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Callout Stamp (Punchline / Score Delta / Judge Verdict) -->
+          <div id="callout-badge" class="callout-badge safe-check" hidden>
+            <span id="callout-text">KNOCKOUT BAR 🔥</span>
+          </div>
+        </section>
+
+        <!-- SCENE: Vote-First CTA (No Winner Spoiler!) -->
+        <section id="scene-vote" class="scene scene-vote" hidden>
+          <div class="vote-standoff">
+            <img class="vote-mc vote-mc-a" src="assets/robot-violet.png" alt="" />
+            <img class="vote-mc vote-mc-b" src="assets/robot-lime.png" alt="" />
+          </div>
+          <div id="vote-card-box" class="ending-card vote-only-card safe-check">
+            <span class="badge-kicker badge-gold">JUDGE SCORECARD LOCKED</span>
+            <h2 class="ending-headline">WHO TOOK THIS CLASH?</h2>
+            <div class="vote-options-row">
+              <div class="vote-pill vote-pill-a">
+                <span class="vote-letter">A</span>
+                <strong id="vote-name-a">FIGHTER A</strong>
+              </div>
+              <div class="vote-pill vote-pill-b">
+                <span class="vote-letter">B</span>
+                <strong id="vote-name-b">FIGHTER B</strong>
+              </div>
+            </div>
+            <p class="ending-sub">DROP YOUR PICK IN THE COMMENTS RIGHT NOW</p>
+          </div>
+        </section>
+
+        <!-- SCENE: Final Winner Reveal (Last ~2.5s) -->
+        <section id="scene-verdict" class="scene scene-verdict" hidden>
+          <div class="verdict-hero-wrap">
+            <img id="verdict-art" class="verdict-art" src="assets/robot-lime.png" alt="" />
+          </div>
+          <div id="verdict-card-box" class="ending-card verdict-slam-card safe-check">
+            <span id="verdict-kicker" class="badge-kicker badge-lime">OFFICIAL WINNER</span>
+            <h2 id="verdict-winner-name" class="verdict-winner-name">CLAUDE OPUS 5.5</h2>
+            <div class="verdict-scoreline">
+              <span id="verdict-score-a" class="v-score v-score-a">8</span>
+              <span class="v-dash">—</span>
+              <span id="verdict-score-b" class="v-score v-score-b">10</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- PERSISTENT SAFE-ZONE HUD: Live Scoreboard (Pinned outside camera shake so HUD stays readable!) -->
+      <header id="hud-scoreboard" class="hud-scoreboard safe-check">
+        <div class="hud-top-row">
+          <div id="hud-team-a" class="hud-team hud-team-a">
+            <span class="hud-dot"></span>
+            <span id="hud-name-a" class="hud-fname">GPT-OSS</span>
+            <strong id="hud-score-a" class="hud-score">0</strong>
+          </div>
+
+          <div class="hud-center-meta">
+            <span id="hud-mode" class="hud-mode-pill">RAP</span>
+            <span id="hud-round" class="hud-round-pill">R1</span>
+          </div>
+
+          <div id="hud-team-b" class="hud-team hud-team-b">
+            <strong id="hud-score-b" class="hud-score">0</strong>
+            <span id="hud-name-b" class="hud-fname">CLAUDE</span>
+            <span class="hud-dot"></span>
+          </div>
+        </div>
+
+        <div class="hud-momentum-bar">
+          <div id="hud-mom-a" class="hud-mom-a" style="width: 50%"></div>
+          <div id="hud-mom-b" class="hud-mom-b" style="width: 50%"></div>
+        </div>
+        <div id="hud-topic-strip" class="hud-topic-strip" dir="auto"></div>
+      </header>
+
+      <!-- SINGLE KINETIC CAPTION SYSTEM (Pinned eye-trace anchor inside Safe Zone; Color-swap ONLY!) -->
+      <div id="caption-stage" class="caption-stage safe-check" hidden>
+        <div id="caption-speaker-pill" class="caption-speaker-pill">SPEAKER</div>
+        <div id="caption-page" class="caption-page" dir="auto"></div>
+      </div>
+
+      <!-- Flash / Whip Transition Veil -->
+      <div id="impact-flash" class="impact-flash" aria-hidden="true"></div>
+
+      <!-- QA Diagnostic Overlay (Enabled ONLY when options.debugSafeZones === true for Contact Sheets) -->
+      <div id="qa-debug-overlay" class="qa-debug-overlay" hidden aria-hidden="true">
+        <div class="qa-mask qa-mask-top">YT SHORTS TOP UI (220px)</div>
+        <div class="qa-mask qa-mask-right">YT RIGHT RAIL (140px)</div>
+        <div class="qa-mask qa-mask-bottom">YT SHORTS BOTTOM OVERLAY (400px)</div>
+        <div class="qa-safe-border"></div>
+        <div id="qa-timecode" class="qa-timecode">t=00.00s | F#0000</div>
+      </div>
+    </div>
+
+    <script type="module" src="director.js"></script>
+  </body>
+</html>
+

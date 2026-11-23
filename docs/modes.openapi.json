@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "BotBrawl mode catalog",
+    "version": "1.1.0",
+    "description": "Local catalog used by the battle setup. Topic presets are an additive field; existing mode fields and battle creation requests remain compatible."
+  },
+  "servers": [{ "url": "http://127.0.0.1:3000" }],
+  "paths": {
+    "/api/modes": {
+      "get": {
+        "operationId": "listModes",
+        "summary": "List formats and curated topic presets",
+        "responses": {
+          "200": {
+            "description": "Five battle modes. Each has 12 distinct topic presets. Send a preset's title as the existing POST /api/battles topic string. Exact title and mode resolve contestant roles on the server; custom topic strings remain supported. No provider calls or battle writes occur.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Mode" }
+                }
+              }
+            }
+          },
+          "403": { "description": "Host is not on the local server allowlist." }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Topic": {
+        "type": "object",
+        "required": ["label", "title", "a", "b"],
+        "properties": {
+          "label": { "type": "string", "example": "Fake flex vs real money" },
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "example": "A fake-rich influencer vs the friend who knows they are broke"
+          },
+          "a": {
+            "type": "string",
+            "description": "Fictional role for contestant A."
+          },
+          "b": {
+            "type": "string",
+            "description": "Fictional role for contestant B."
+          }
+        }
+      },
+      "Mode": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "emoji",
+          "topic",
+          "lengthLabel",
+          "length",
+          "round",
+          "topics"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": ["rap", "roast", "debate", "poetry", "story"]
+          },
+          "name": { "type": "string" },
+          "emoji": { "type": "string" },
+          "topic": {
+            "type": "string",
+            "description": "Default title, kept for older clients."
+          },
+          "lengthLabel": { "type": "string" },
+          "length": { "type": "integer" },
+          "round": { "type": "string" },
+          "topics": {
+            "type": "array",
+            "minItems": 12,
+            "items": { "$ref": "#/components/schemas/Topic" }
+          }
+        }
+      }
+    }
+  }
+}

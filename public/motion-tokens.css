@@ -1,0 +1,57 @@
+/* ==========================================================================
+   BotBrawl Broadcast Motion Tokens — "Energetic Arena" Archetype
+   Derived from LottieFiles/motion-design-skill & 2026 YouTube Shorts Safe Zones
+   ========================================================================== */
+
+:root {
+  /* Brand Neon Identity (Preserved) */
+  --arena-bg: #0b0a10;
+  --arena-surface: #14121d;
+  --arena-surface-glass: rgba(18, 16, 27, 0.86);
+  --violet: #a78bfa;
+  --violet-deep: #4c1d95;
+  --violet-glow: rgba(167, 139, 250, 0.42);
+  --lime: #d5fb46;
+  --lime-deep: #3f6212;
+  --lime-glow: rgba(213, 251, 70, 0.38);
+  --gold: #facc15;
+  --text-primary: #ffffff;
+  --text-muted: #b9b3c9;
+
+  /* Typography */
+  --font-display: "Barlow Condensed", "Noto Sans Devanagari", "Noto Nastaliq Urdu", sans-serif;
+  --font-sans: "Space Grotesk", "Noto Sans Devanagari", "Noto Nastaliq Urdu", sans-serif;
+
+  /* Duration Palette ("Energetic Arena": 90ms micro / 180ms quick / 260ms standard / 420ms dramatic) */
+  --dur-word-highlight: 90ms;
+  --dur-punch-shake: 166ms;   /* 5 frames @ 30fps */
+  --dur-quick: 180ms;
+  --dur-cut: 240ms;           /* 7 frames @ 30fps */
+  --dur-exit: 170ms;          /* ~70% of entrance duration per LottieFiles directional law */
+  --dur-dramatic: 400ms;
+
+  /* Easing Families (Zero linear spatial movement) */
+  --ease-signature: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo: fast launch, crisp settle */
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);       /* MD3 Snappy: active word & HUD updates */
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);         /* MD3 Accelerate: exits */
+  --ease-onscreen: cubic-bezier(0.4, 0, 0.2, 1);   /* Smooth camera re-framing */
+
+  /* 3-Tier Depth Speed Multipliers (LottieFiles Depth-Through-Speed) */
+  --parallax-hero: 1;
+  --parallax-secondary: 0.5;
+  --parallax-ambient: 0.2;
+
+  /* 2026 YouTube Shorts Safe-Zone Margins (1080x1920)
+     Golden Safe Window: x = 60..940 (880px), y = 240..1500 (1260px) */
+  --safe-9x16-top: 230px;
+  --safe-9x16-right: 140px;
+  --safe-9x16-bottom: 400px;
+  --safe-9x16-left: 60px;
+
+  /* 16:9 Landscape Broadcast Margins (1920x1080) */
+  --safe-16x9-top: 52px;
+  --safe-16x9-right: 72px;
+  --safe-16x9-bottom: 64px;
+  --safe-16x9-left: 72px;
+}
+
